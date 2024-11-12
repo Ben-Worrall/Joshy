@@ -49,10 +49,7 @@ window.raf = (function(){
     this.colArr = [];
     this.options = {};
   }
-  document.getElementById('handleBar').addEventListener('click', function(){
-    SlotMachine.prototype.rotateHandle()
-    SlotMachine.prototype.run()
-    })
+  
     
   SlotMachine.prototype.beforeRun = function(){    
     if (completed) {
@@ -200,13 +197,15 @@ window.raf = (function(){
         //timer = setTimeout(function(){that.init(BannerFlow);that.beforeRun()},500)
       });
       if (supportTouch) {
-        window.addEventListener("touchstart",function(){
-          that.beforeRun();
-        });
+        document.getElementById('handleBar').addEventListener('touchstart', function(){
+          that.rotateHandle()
+          that.beforeRun()
+          })
       } else {
-        window.addEventListener("click",function(){
-          that.beforeRun();
-        });
+        document.getElementById('handleBar').addEventListener('click', function(){
+          that.rotateHandle()
+          that.beforeRun()
+          })
       }
     }
     var slotTrigger = document.querySelector("#slot-trigger");
@@ -366,7 +365,7 @@ var timer,widget = null;
       widget = new SlotMachine();
       widget.addListener();
       widget.init();
-    widget.beforeRun();
+      
     }
     
   })
